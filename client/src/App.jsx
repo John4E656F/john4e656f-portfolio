@@ -4,7 +4,6 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { About, Footer, Header, Skills, Testimonial, Work } from './container';
 import { Navbar } from './components';
 
-import reactLogo from './assets/react.svg';
 import './App.scss';
 
 function App() {
