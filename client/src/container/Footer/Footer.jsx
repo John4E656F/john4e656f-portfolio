@@ -14,7 +14,11 @@ const Footer = () => {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { username, email, message } = formData;
+  useEffect(() => {
+    emailjs.init(publicKey);
+  }, []);
+
+  const { name, email, message } = formData;
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -23,8 +27,8 @@ const Footer = () => {
 
   const handleSubmit = () => {
     setLoading(true);
+    console.log(formData);
 
-    emailjs.init(publicKey);
     emailjs
       .send(serviceId, templateId, formData, publicKey)
       .then((res) => {
@@ -65,7 +69,7 @@ const Footer = () => {
       {!isFormSubmitted ? (
         <div className='app__footer-form app__flex'>
           <div className='app__flex'>
-            <input className='p-text' type='text' placeholder='Your Name' name='username' value={username} onChange={handleChangeInput} />
+            <input className='p-text' type='text' placeholder='Your Name' name='name' value={name} onChange={handleChangeInput} />
           </div>
           <div className='app__flex'>
             <input className='p-text' type='email' placeholder='Your Email' name='email' value={email} onChange={handleChangeInput} />
