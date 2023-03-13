@@ -13,8 +13,8 @@ const Navbar = () => {
         <img src={images.logo} alt='logo' />
       </div>
       <ul className='app__navbar-links'>
-        {['home', 'about', 'work', 'skills', 'contact'].map((item) => (
-          <li className='app__flex p-text' key={`link-${item}`}>
+        {['home', 'about', 'work', 'skills', 'contact'].map((item, index) => (
+          <li className='app__flex p-text' key={`link-${item + index}`}>
             <div />
             <a href={`#${item}`}>{item}</a>
           </li>
@@ -28,8 +28,8 @@ const Navbar = () => {
           <motion.div whileInView={{ x: [300, 0] }} transition={{ duration: 0.85, ease: 'easeOut' }}>
             <HiX onClick={() => setToggle(false)} />
             <ul>
-              {['home', 'about', 'work', 'skills', 'contact'].map((item) => (
-                <li className='app__flex p-text' key={item}>
+              {['home', 'about', 'work', 'skills', 'contact'].map((item, index) => (
+                <li className='app__flex p-text' key={item + index}>
                   <a href={`#${item}`} onClick={() => setToggle(false)}>
                     {item}
                   </a>

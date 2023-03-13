@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import emailjs from 'emailjs-com';
 import { images } from '../../constants';
 import { AppWrap } from '../../wrapper';
 import { client } from '../../client';
 import './Footer.scss';
+
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICEID;
+const templateId = import.meta.env.VITE_EMAILJS_TEMPLATEID;
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLICKEY;
 
 const Footer = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -20,20 +24,27 @@ const Footer = () => {
   const handleSubmit = () => {
     setLoading(true);
 
-    const contact = {
-      _type: 'contact',
-      name: formData.username,
-      email: formData.email,
-      message: formData.message,
-    };
+    emailjs.init(publicKey);
 
-    client
-      .create(contact)
-      .then(() => {
+    console.log(serviceId + ': ' + templateId + ': ' + publicKey);
+
+    emailjs
+      .send(serviceId, templateId, formData, publicKey)
+      .then((res) => {
+        console.log('SUCCESS!', res.status, res.text);
         setLoading(false);
         setIsFormSubmitted(true);
       })
       .catch((err) => console.log(err));
+
+    // const contact = {
+    //   _type: 'contact',
+    //   name: formData.username,
+    //   email: formData.email,
+    //   message: formData.message,
+    // };
+
+    // client.create(contact).catch((err) => console.log(err));
   };
 
   return (
@@ -78,4 +89,4 @@ const Footer = () => {
   );
 };
 
-export default AppWrap(Footer, 'app__footer');
+export default AppWrap(Footer, 'contact');

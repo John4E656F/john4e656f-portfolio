@@ -22,8 +22,8 @@ const Skills = () => {
       setSkills(data);
     });
 
-    skills.forEach((skill, i) => {
-      console.log(skill.name + i);
+    skills.forEach((skill, index) => {
+      console.log(skill.name + index);
     });
   }, []);
 
@@ -43,13 +43,13 @@ const Skills = () => {
           ))}
         </motion.div>
         <div className='app__skills-exp'>
-          {experiences?.map((experience, i) => (
-            <motion.div className='app__skills-exp-item' key={i + experience.year}>
+          {experiences?.map((experience, index) => (
+            <motion.div className='app__skills-exp-item' key={experience.year + index}>
               <div className='app__skills-exp-year'>
                 <p className='bold-text'>{experience.year}</p>
               </div>
               <motion.div className='app__skills-exp-works'>
-                {experience?.works?.map((work) => (
+                {experience?.works?.map((work, index) => (
                   <>
                     <motion.div
                       whileInView={{ opacity: [0, 1] }}
@@ -57,7 +57,7 @@ const Skills = () => {
                       className='app__skills-exp-work'
                       data-tip
                       data-for={work.name}
-                      key={work.name}
+                      key={work.name + index}
                     >
                       <h4 className='bold-text'>{work.name}</h4>
                       <p className='p-text'>{work.company}</p>
@@ -76,4 +76,4 @@ const Skills = () => {
   );
 };
 
-export default AppWrap(Skills, 'app__skills');
+export default AppWrap(Skills, 'skills');
