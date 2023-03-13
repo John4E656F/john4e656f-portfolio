@@ -25,9 +25,6 @@ const Footer = () => {
     setLoading(true);
 
     emailjs.init(publicKey);
-
-    console.log(serviceId + ': ' + templateId + ': ' + publicKey);
-
     emailjs
       .send(serviceId, templateId, formData, publicKey)
       .then((res) => {
