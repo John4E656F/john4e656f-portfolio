@@ -17,7 +17,6 @@ const Work = () => {
 
     client.fetch(query).then((data) => {
       const sortedData = [...data].sort((a, b) => new Date(b._createdAt) - new Date(a._createdAt));
-      console.log(sortedData);
       setWorks(sortedData);
       setFilterWork(sortedData);
     });
@@ -64,7 +63,7 @@ const Work = () => {
           const isRecent = workDate > thirtyDaysAgo;
 
           return (
-            <div className='app__work-item app__flex' key={index}>
+            <div className='app__work-item app__flex' key={work + index}>
               {isRecent && <div className='recent-tag'>Recent</div>}
               <div className='app__work-img app__flex'>
                 <img src={urlFor(work.imgUrl)} alt={work.name} />
