@@ -19,6 +19,12 @@ const Navbar = () => {
             <a href={`#${item}`}>{item}</a>
           </li>
         ))}
+        <li className='app__flex p-text'>
+          <div />
+          <a href={`${import.meta.env.VITE_PUBLIC_URL}/assets/John+Andres+CV.pdf`} download>
+            Download CV
+          </a>
+        </li>
       </ul>
 
       <div className='app__navbar-menu'>
@@ -35,6 +41,11 @@ const Navbar = () => {
                   </a>
                 </li>
               ))}
+              <li className='app__flex p-text'>
+                <a href='/assets/John+Andres+CV.pdf' download onClick={() => setToggle(false)}>
+                  Download CV
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}
